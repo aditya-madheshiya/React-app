@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Navbar from "./components/Navbar";
+import TextForm from "./components/TextForm";
+import Home from "./components/Home";
+import React , { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+function App() {  // props k use karne bhi dark mode ko impliment karenge bad me 
+ 
+  const [myStyle, setStyle] = useState({
+    color: 'white',
+    backgroundColor: 'black',
+  });
 
-function App() {
+  const togglefuntion = () => {
+    if ((myStyle.color === 'white')) {
+       setStyle ( {
+        color: 'black',
+        backgroundColor: 'white',
+      });
+    }
+    else{
+      setStyle ({
+        color: 'white',
+        backgroundColor: 'black',
+      });
+    }
+   
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div style={myStyle}>
+        <Navbar  name ="Aditya" option="Home"/>
+        <Routes>
+          <Route path="/Home" element={< Home/>} />
+          <Route path="/TextForm" element={< TextForm/>} />
+        </Routes>
+        <button onClick={togglefuntion} type="button">Unble dark mode</button>
+      </div>
+    </>
   );
 }
 
